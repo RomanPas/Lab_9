@@ -6,7 +6,7 @@ else()
 	project(bayan VERSION 0.0.1)
 endif()
 
-find_package(Boost COMPONENTS program_options filesystem  REQUIRED)
+find_package(Boost COMPONENTS program_options filesystem REQUIRED)
 include_directories(${Boost_INCLUDE_DIR})
 
 add_executable(bayan main.cpp "lib/options.cpp" "lib/bayan_lib.cpp")

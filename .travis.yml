@@ -1,0 +1,19 @@
+language: cpp
+before_install:
+  - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
+install: 
+  - sudo apt-get install -qq g++-7
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
+before_script:
+- sudo apt-get update -qq
+script:
+- cmake .
+- cmake --build .
+- cmake --build . --target test
+- cmake --build . --target package
+deploy:
+  provider: script
+  skip_cleanup: true
+  script:
+  - curl -v -T bayan-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uromanpas:$BINTRAY_API_KEY "https://api.bintray.com/content/romanpas/reps/Lab_9/$TRAVIS_BUILD_NUMBER/bayan-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"

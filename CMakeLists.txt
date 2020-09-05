@@ -8,7 +8,6 @@ endif()
 
 find_package(Boost COMPONENTS program_options filesystem  REQUIRED)
 include_directories(${Boost_INCLUDE_DIR})
-#set(LIB_DIR ${CMAKE_SOURCE_DIR}/lib)
 
 add_executable(bayan main.cpp "lib/options.cpp" "lib/bayan_lib.cpp")
 
